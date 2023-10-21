@@ -1,3 +1,4 @@
+import { authenticator } from "~/services/auth.server";
 import type {
   HeadersFunction,
   LinksFunction,
@@ -28,6 +29,8 @@ export const headers: HeadersFunction = () => ({
 });
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
+  await authenticator.isAuthenticated(request, { failureRedirect: "/login" });
+
   return null;
 };
 
@@ -35,7 +38,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   return null;
 };
 
-export default function RouteComponent() {
+export default function HomeRoute() {
   const data = useLoaderData<typeof loader>();
 
   console.log(data);
