@@ -1,52 +1,22 @@
-import { useRemixForm, getValidatedFormData } from "remix-hook-form";
 import { Form } from "@remix-run/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { json } from "@remix-run/node";
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { z } from "zod";
+import { AuthStrategies } from "~/services/auth_strategies";
+import type { AuthStrategy } from "~/services/auth.server";
 
-const schema = z.object({
-  // Add your schema here
-});
+interface SocialButtonProps {
+  provider: AuthStrategy;
+  label: string;
+}
 
-type FormData = z.infer<typeof schema>;
+const SocialButton = ({ provider, label }: SocialButtonProps) => (
+  <Form action={`/auth/${provider}`} method="post">
+    <button>{label}</button>
+  </Form>
+);
 
-const resolver = zodResolver(schema);
-
-export const action = async ({ request }: ActionFunctionArgs) => {
-  const {
-    errors,
-    data,
-    receivedValues: defaultValues,
-  } = await getValidatedFormData<FormData>(request, resolver);
-  if (errors) {
-    return json({ errors, defaultValues });
-  }
-  // Do something with the data
-  return json(data);
-};
-
-export default function FormRoute() {
-  const { handleSubmit } = useRemixForm({
-    mode: "onSubmit",
-    defaultValues: {
-      name: "",
-      email: "",
-    },
-    resolver,
-  });
-
+export default function LoginRoute() {
   return (
-    <Form method="post" onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="name" />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" />
-      </div>
-      <button type="submit">Submit</button>
-    </Form>
+    <>
+      <SocialButton provider={AuthStrategies.FORM} label="Login with form" />
+    </>
   );
 }

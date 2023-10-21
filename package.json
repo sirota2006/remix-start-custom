@@ -24,6 +24,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
+    "remix-auth": "^3.6.0",
+    "remix-auth-form": "^1.4.0",
     "remix-hook-form": "^2.0.3",
     "zod": "^3.22.4"
   },
