@@ -11,9 +11,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function IndexRoute() {
   const { message } = useLoaderData<typeof loader>();
+
+
   return (
     <div>
-      <h1>{message}</h1>
+      <h1>Index</h1>
+      <p>{message}</p>
       <Form method="post" action="/logout">
         <button type="submit">Logout</button>
       </Form>
