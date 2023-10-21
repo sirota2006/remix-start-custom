@@ -1,0 +1,41 @@
+{
+  "name": "remix-starter-basic",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev --manual",
+    "start": "remix-serve ./build/index.js",
+    "typecheck": "tsc",
+    "lint": "eslint \"app/**/*.+(ts|tsx)\"",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier app --check",
+    "prettier:fix": "prettier app --write",
+    "format-code": "npm run prettier:fix & npm run lint:fix"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
+    "@remix-run/css-bundle": "^2.1.0",
+    "@remix-run/node": "^2.1.0",
+    "@remix-run/react": "^2.1.0",
+    "@remix-run/serve": "^2.1.0",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
+    "remix-hook-form": "^2.0.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.1.0",
+    "@remix-run/eslint-config": "^2.1.0",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^8.38.0",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
